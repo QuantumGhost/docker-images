@@ -9,7 +9,7 @@ BUILD_TAG := v$(BUILD_TIME)
 
 .PHONY: build publish update-base
 
-build: update-base
+build:
 	docker build -t $(IMAGE_FULL_NAME_WO_TAG):$(RELEASE_TAG) .
 	docker tag $(IMAGE_FULL_NAME_WO_TAG):$(RELEASE_TAG) $(IMAGE_FULL_NAME_WO_TAG):$(BUILD_TAG)
 
