@@ -1,10 +1,5 @@
-workflow "Build docker images" {
+workflow "Docker images daily build" {
   on = "schedule(0 0 * * *)"
-  resolves = ["build-distroless"]
-}
-
-workflow "Build docker images" {
-  on = "push"
   resolves = ["build-distroless"]
 }
 
