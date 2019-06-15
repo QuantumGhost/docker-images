@@ -1,9 +1,14 @@
-workflow "Build distroless" {
+workflow "Build docker images" {
   on = "schedule(0 0 * * *)"
-  resolves = ["build_distroless"]
+  resolves = ["build-distroless"]
 }
 
-action "build_distroless" {
-  uses = "actions/docker/cli@master"
-  args = "cd distroless; make publish"
+workflow "Build docker images" {
+  on = "push"
+  resolves = ["build-distroless"]
+}
+
+action "build-distroless" {
+  uses = "./ci/build-distroless"
+  secrets = ["DOCKER_HUB_TRIGGER_URL"]
 }
